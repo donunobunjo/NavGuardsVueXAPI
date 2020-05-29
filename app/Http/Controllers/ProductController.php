@@ -59,6 +59,7 @@ class ProductController extends Controller
 
         ]);
         Return Response::json(['product'=>$product]);
+        //Return Response::json(['msg'=>'lalala']);
     }
 
     /**
