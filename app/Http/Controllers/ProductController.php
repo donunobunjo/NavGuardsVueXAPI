@@ -105,5 +105,9 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+        $status = $product->delete();
+        if ($status){
+            Response::json(['message'=>'Product deleted successfully']);
+        }
     }
 }

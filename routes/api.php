@@ -18,12 +18,12 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/lala','PostController@getAllPosts');
 Route::post('login', 'UserController@login');
 Route::post('register', 'UserController@register');
-Route::resource('product','ProductController');
+//Route::resource('product','ProductController');
 //Route::get('get_all', 'PostController@getAllPosts')->name('fetch_all');
 Route::group(['middleware' => 'auth:api'], function() {
     Route::get('get_all', 'PostController@getAllPosts')->name('fetch_all');
     Route::post('create_post', 'PostController@createPost')->name('create_post');
-    //Route::resource('product','ProductController');
+    Route::resource('product','ProductController');
 });
 
 
