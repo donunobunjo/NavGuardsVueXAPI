@@ -50,12 +50,12 @@ class ProductController extends Controller
             Response::json(['message'=>'OOppppps']);
         }
         $user= Auth::user();
-        $lala=100;
+        //$lala=100;
         $product = Product::create([
             'item'=>$request->item,
             'quantity'=>$request->quantity,
             'price'=>$request->price,
-            'user_id'=>$lala
+            'user_id'=>$user->id
 
         ]);
         Return Response::json(['product'=>$product]);
@@ -102,12 +102,14 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
         //
+        //$status = $product->delete();
+        $product=Product::find($id);
         $status = $product->delete();
         if ($status){
-            Response::json(['message'=>'Product deleted successfully']);
+            return Response::json(['message'=>'Product deleted successfully']);
         }
     }
 }
