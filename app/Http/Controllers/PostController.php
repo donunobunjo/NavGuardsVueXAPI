@@ -21,22 +21,23 @@ class PostController extends Controller
         $title =$request->title;
         $content =$request->content;
         $images=$request->images;
-
         $post = Post::create([
             'title'=>$title,
             'content'=>$content,
             'user_id'=>$user->id
         ]);
-
-        foreach($images as $image){
-           // $image_path=Storage::disk('uploads')->put($user->email.'/posts/',$image);
-            $image_path = Storage::disk('uploads')->put($user->email . '/posts/' . $post->id, $image);
+        foreach($images as $image) {
+            $imagePath = Storage::disk('uploads')->put($user->email . '/posts/' . $post->id, $image);
             PostImage::create([
-                'post_image_caption'=>$title,
-                'post_image_path'=>'/uploads/'.$image_path,
-                'post_id'=> $post->id
+                'post_image_caption' => $title,
+                'post_image_path' => '/uploads/' . $imagePath,
+                'post_id' => $post->id
             ]);
         }
-        return Response::json(['error'=>false,'data'=>$post]);
+
+
+        return Response::json(['msg'=>'e don happen']);
+
+       
     }
 }
